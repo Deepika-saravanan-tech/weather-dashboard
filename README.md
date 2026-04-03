@@ -41,6 +41,15 @@ Display current weather conditions including temperature, humidity, wind speed, 
    - Select your configured Tomcat server and click `Finish`.
 9. Access the WeatherApp through your web browser using the provided URL (usually `http://localhost:8080/WeatherApp`).
 
+## Render Deployment
+This project includes a `Dockerfile` and `render.yaml` so it can be deployed as a Docker web service on Render.
+
+1. Push the project to GitHub.
+2. In Render, create a new Web Service from the GitHub repository.
+3. Render will detect the `render.yaml` / `Dockerfile`.
+4. Add the environment variable `OPENWEATHER_API_KEY` in the Render dashboard.
+5. Deploy the service and open the generated public URL.
+
 ## API Integration in Servlet:
 - Created a Java servlet (MyServlet.java) to handle HTTP requests.
 - In the doPost method, fetched the city name from the form input.
