@@ -81,10 +81,6 @@ These files make the project deployable on Render as a Docker web service.
 5. Add the environment variable `OPENWEATHER_API_KEY`.
 6. Deploy the service and use the generated public URL.
 
-## Screenshots
-![Weather Dashboard Screenshot](screenshots/1l.jpeg)
-![Weather Dashboard Screenshot](screenshots/2l.jpeg)
-![Weather Dashboard Screenshot](screenshots/3s.jpeg)
 
 ## Resume-Friendly Project Description
 `Built a full-stack Weather Dashboard using Java Servlet, JSP, JavaScript, Maven, and Tomcat. Integrated OpenWeather API to provide current weather, 5-day forecast, geolocation-based search, smart weather suggestions, recent searches, and favorite cities. Secured API configuration with environment variables and prepared the project for cloud deployment using Docker and Render.`
