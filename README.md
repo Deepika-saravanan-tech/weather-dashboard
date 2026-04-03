@@ -1,88 +1,100 @@
-# WeatherApp USING JAVA SERVLET JSP
+# Weather Dashboard
 
-## Description
-WeatherApp is a simple Java web application developed using Servlets, JSP, HTML, CSS, and JavaScript. It integrates with the OpenWeatherMap API to fetch weather data for a given city and display it to the user.
+## Project Idea
+Weather Dashboard is a full-stack Java web application built as an interview-ready project using Java Servlets, JSP, HTML, CSS, JavaScript, Maven, and Apache Tomcat. The goal of the project is to go beyond a basic weather search app by combining real-time weather data, a 5-day forecast, location-based search, smart suggestions, recent searches, and favorite cities in one polished dashboard.
+
+## Why This Project Is Good For Interviews
+- It demonstrates backend development with Java Servlets and request handling.
+- It shows frontend integration using JSP, HTML, CSS, and JavaScript.
+- It includes third-party API integration with OpenWeather.
+- It uses Maven for dependency management and build packaging.
+- It is deployable locally on Tomcat and publicly through Render.
+- It includes product-thinking features like favorites, recent searches, and smart recommendations.
 
 ## Features
-Fetch weather data based on the user's input city name.
-Display current weather conditions including temperature, humidity, wind speed, visibility, and cloud cover, etc.
+- Current weather search by city name
+- 5-day forecast
+- Current location weather using browser geolocation
+- Smart suggestion section such as best time to go out
+- Recent searches stored in the browser
+- Favorite cities stored in the browser
+- Friendly error handling for invalid city names or API issues
+- Responsive blue-and-white dashboard UI
 
-## Technologies Used
+## Tech Stack
+- Java
 - Java Servlets
-- JavaServer Pages (JSP)
+- JSP
 - HTML
 - CSS
 - JavaScript
-- Gson library for JSON parsing
-- OpenWeatherMap API
+- Maven
+- Apache Tomcat 10
+- OpenWeather API
+- Gson
 
-## Setup Instructions
-1. Download and install Eclipse IDE (or IntelliJ IDEA).
-2. Download and install Apache Tomcat 10.1.1.
-3. Open Eclipse IDE and configure it with Apache Tomcat:
-   - Go to `Window` -> `Preferences`.
-   - Navigate to `Server` -> `Runtime Environments`.
-   - Click `Add` and select `Apache Tomcat v10.1.1`.
-   - Provide the Tomcat installation directory and finish the setup.
-4. Clone the repository to your local machine using `git clone <repository_url>`.
-5. Import the project into Eclipse IDE:
-   - Go to `File` -> `Import`.
-   - Select `Existing Projects into Workspace`.
-   - Choose the cloned project directory and import it into Eclipse.
-6. Ensure that the Gson library is included in the `src/webapp/WEB-INF/lib` directory of your project. If not, add it manually to the build path.
-7. Obtain an API key from OpenWeatherMap and set it as an environment variable named `OPENWEATHER_API_KEY` before starting Tomcat.
-   - Windows Command Prompt example:
+## Architecture Summary
+- `MyServlet.java` handles request processing, OpenWeather API calls, error handling, and forecast preparation.
+- `index.html` is the landing page for search and saved city shortcuts.
+- `index.jsp` renders current weather, forecast, suggestions, and interactive weather details.
+- `script.js` manages client-side validation, geolocation, recent searches, and favorites.
+- `style.css` and `jsp-style.css` provide the responsive frontend design.
+
+## Interview Explanation
+If an interviewer asks you to explain this project, you can say:
+
+`I built a Weather Dashboard using Java Servlet and JSP as a full-stack web application. The app integrates with the OpenWeather API to fetch current weather and 5-day forecast data. I added location-based weather search, smart suggestions based on weather conditions, recent searches, and favorite cities to make the project more user-focused and unique. I used Maven for build management, Tomcat for deployment, and Render for hosting.`
+
+## Key Technical Highlights
+- Used `HttpURLConnection` to call external REST APIs from a Java Servlet
+- Parsed JSON responses using Gson
+- Added secure API-key handling through the `OPENWEATHER_API_KEY` environment variable
+- Packaged the app as a WAR file using Maven
+- Containerized deployment setup using Docker for Render hosting
+- Added browser-side persistence with `localStorage`
+
+## How To Run Locally
+1. Install JDK 17 or above.
+2. Install Apache Tomcat 10.x.
+3. Clone this repository.
+4. Set the environment variable `OPENWEATHER_API_KEY`.
+   - Command Prompt:
      `set OPENWEATHER_API_KEY=your_api_key_here`
-   - PowerShell example:
+   - PowerShell:
      `$env:OPENWEATHER_API_KEY="your_api_key_here"`
-8. Run the application on your local Apache Tomcat server:
-   - Right-click on the project in Eclipse.
-   - Go to `Run As` -> `Run on Server`.
-   - Select your configured Tomcat server and click `Finish`.
-9. Access the WeatherApp through your web browser using the provided URL (usually `http://localhost:8080/WeatherApp`).
+5. Build the project:
+   `mvn clean package`
+6. Deploy the generated WAR to Tomcat or run it from your IDE with Tomcat configured.
 
-## Render Deployment
-This project includes a `Dockerfile` and `render.yaml` so it can be deployed as a Docker web service on Render.
+## Deployment
+This project includes:
+- `Dockerfile`
+- `render.yaml`
 
+These files make the project deployable on Render as a Docker web service.
+
+## Render Deployment Steps
 1. Push the project to GitHub.
-2. In Render, create a new Web Service from the GitHub repository.
-3. Render will detect the `render.yaml` / `Dockerfile`.
-4. Add the environment variable `OPENWEATHER_API_KEY` in the Render dashboard.
-5. Deploy the service and open the generated public URL.
-
-## API Integration in Servlet:
-- Created a Java servlet (MyServlet.java) to handle HTTP requests.
-- In the doPost method, fetched the city name from the form input.
-- Constructed the API URL with the city name and your API key (apiUrl) to fetch weather data.
-
- ### HTTP Request to API:
-   -  Used HttpURLConnection to establish a connection to the API endpoint.
-   - Set the request method to GET and retrieved the API response using input streams.
-
- ### Processing API Response:
-  - The API response was in JSON format.
-  - Used the Gson library to parse the JSON response into a JsonObject.
-  - Extracted relevant weather data like temperature, humidity, wind speed, visibility, weather condition, and cloud cover from the JSON response.
-    
-### Setting Request Attributes:
-
-  - Stored the extracted weather data, city name, date, time, and other relevant information as request attributes using HttpServletRequest.setAttribute().
-
-### Forwarding Request to JSP:
-
-  - Forwarded the request to the JSP page (index.jsp) for rendering using RequestDispatcher.forward().
-
-## Displaying Data in JSP:
-
-  - In our JSP page (index.jsp), we used HTML and embedded Java code (EL expressions) to display the weather data.
-  - Accessed the data from request attributes using ${attributeName} syntax.
+2. Create a new Web Service in Render.
+3. Select the GitHub repository.
+4. Keep the Docker environment selected.
+5. Add the environment variable `OPENWEATHER_API_KEY`.
+6. Deploy the service and use the generated public URL.
 
 ## Screenshots
-![WeatherApp Screenshot](screenshots/1l.jpeg)
+![Weather Dashboard Screenshot](screenshots/1l.jpeg)
+![Weather Dashboard Screenshot](screenshots/2l.jpeg)
+![Weather Dashboard Screenshot](screenshots/3s.jpeg)
 
-![WeatherApp Screenshot](screenshots/2l.jpeg)
+## Resume-Friendly Project Description
+`Built a full-stack Weather Dashboard using Java Servlet, JSP, JavaScript, Maven, and Tomcat. Integrated OpenWeather API to provide current weather, 5-day forecast, geolocation-based search, smart weather suggestions, recent searches, and favorite cities. Secured API configuration with environment variables and prepared the project for cloud deployment using Docker and Render.`
 
-![WeatherApp Screenshot](screenshots/3s.jpeg)
+## Future Improvements
+- Dynamic weather icons based on condition
+- Air quality index integration
+- Temperature unit toggle between Celsius and Fahrenheit
+- User authentication for cloud-synced favorites
+- Charts for hourly temperature trends
 
-## Created by:
-- [Darshan Bajgain](https://github.com/darshanbajgain) 
+## Author
+Deepika Saravanan
